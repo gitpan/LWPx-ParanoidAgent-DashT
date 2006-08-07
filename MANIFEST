@@ -1,0 +1,11 @@
+Build.PL
+BuildOpts.PL
+Changes
+lib/LWPx/ParanoidAgent/DashT.pm
+Makefile.PL
+MANIFEST			This list of files
+META.yml
+README
+t/00-loads.t
+t/01-requests.t
+t/02-redir.t

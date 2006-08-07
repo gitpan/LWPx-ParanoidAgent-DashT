@@ -1,0 +1,56 @@
+LWPx-ParanoidAgent-DashT version 1.021
+
+This is a module that subclasses LWPx::ParanoidAgent and runs 
+in perl's "taint mode" (-T, also -t in 5.8.x versions of Perl).
+
+"The C<LWPx::ParanoidAgent> is a class subclassing C<LWP::UserAgent>,
+but paranoid against attackers.  It's to be used when you're fetching
+a remote resource on behalf of a possibly malicious user." -- from the 
+C<LWPx::ParanoidAgent> documentation.
+
+Unfortunately, it doesn't check the output of the resolver it uses, 
+and so leaves the IP address tainted, and it eventually tries to pass
+that tainted IP address into C<connect>, whech then fails when used 
+with perl's -T option, which is recommended for use when outside data
+could be malicious.
+
+This is true even if the address passed in was originally untainted, 
+as long as it wasn't an IP address to start with.
+
+This class replaces the _resolve subroutine  of LWPx::ParanoidAgent 
+with one that breaks apart the IP address returned and puts it back 
+together, therefore untainting it before returning.
+
+INSTALLATION
+
+To install this module, run the following commands:
+
+    perl Build.PL
+    ./Build
+    ./Build test
+    ./Build install
+
+or:
+
+    perl Makefile.PL
+    make
+    make test
+    make install
+
+You can also use CPAN.pm to install this module and its dependencies:
+
+  perl -MCPAN -e "install LWPx-ParanoidAgent-DashT"
+
+DEPENDENCIES
+
+LWPx::ParanoidAgent, version 1.02 or greater.
+
+COPYRIGHT AND LICENCE
+
+Copyright 2006, Curtis Jewell
+
+Lot of code from the base classes Copyright 2005 Brad Fitzpatrick 
+and Copyright 1995-2004 Gisle Aas.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.

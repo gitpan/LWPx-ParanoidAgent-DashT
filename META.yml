@@ -1,0 +1,27 @@
+---
+name: LWPx-ParanoidAgent-DashT
+version: 1.021
+author:
+  - 'Curtis Jewell <csjewell@cpan.org>'
+abstract: subclass of LWPx::ParanoidAgent that runs under -T
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+requires:
+  LWPx::ParanoidAgent: 1.02
+build_requires:
+  IO::Socket::INET: 0
+  Net::DNS: 0
+  Test::More: 0
+  Time::HiRes: 0
+recommends:
+  Crypt::SSLeay: 0
+dynamic_config: 0
+provides:
+  LWPx::ParanoidAgent::DashT:
+    file: lib/LWPx/ParanoidAgent/DashT.pm
+    version: 1.021
+generated_by: Module::Build version 0.2805
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
